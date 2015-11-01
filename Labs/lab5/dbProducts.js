@@ -1,15 +1,11 @@
-/**
- * Created by Vico on 10/20/2015.
- */
 
 var db = require('./db.js');
 
 var getProduct = function getProduct(product_id, callback) {
 
-    var get = {product_id: product_id};
+    var get = {id: product_id};
     db.pool.getConnection(function (err, connection) {
         // Use the connection
-        //connection.query('SELECT * FROM PRODUCTS WHERE product_id = ' + product_id, function (err, results) {
         connection.query('SELECT * FROM PRODUCTS WHERE ?', get, function (err, results) {
             if (!err) {
                 if (results[0] != null) {
@@ -29,7 +25,7 @@ var getProduct = function getProduct(product_id, callback) {
 
 var deleteProduct = function deleteProduct(product_id, callback) {
 
-    var get = {product_id: product_id};
+    var get = {id: product_id};
     db.pool.getConnection(function (err, connection) {
         // Use the connection
         connection.query('DELETE FROM PRODUCTS WHERE ?', get, function (err, results) {
@@ -48,7 +44,6 @@ var deleteProduct = function deleteProduct(product_id, callback) {
 
     });
 }
-
 var getProducts = function getProducts(callback) {
 
     db.pool.getConnection(function (err, connection) {
@@ -69,7 +64,6 @@ var getProducts = function getProducts(callback) {
 
     });
 }
-
 var insertProduct = function insertProduct(data, callback) {
 
     var get = {name: data.name, price: data.price};
