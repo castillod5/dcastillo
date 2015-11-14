@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            position: absolute;
+        }
+        .rating > span {
+            display: inline-block;
+            position: relative;
+            width: 1.1em;
+        }
+        .rating > span:hover:before,
+        .rating > span:hover ~ span:before {
+            content: "\2605";
+            position: absolute;
+        }
+    </style>
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body ng-app="ratingProducts" ng-controller="ratingCtrl">
+
+    <img src="ps4.ico" />
+
+    <div class="rating" ng-init="numRating={count: 0}">
+        <span id="5" ng-click="increment(numRating);">&#9734;</span>
+        <span id="4" ng-click="increment(numRating);">&#9734;</span>
+        <span id="3" ng-click="increment(numRating);">&#9734;</span>
+        <span id="2" ng-click="increment(numRating);">&#9734;</span>
+        <span id="1" ng-click="increment(numRating);">&#9734;</span>
+    </div>
+
+    <br><br>
+
+    <p>Rating: {{rating}}</p>
+    <p>Number of Ratings: <span>{{ numRating.count }}</span></p>
+
+<script>
+    var app = angular.module('ratingProducts', []);
+    app.controller('ratingCtrl', function($scope){
+        $scope.rating = 0 ;
+        $scope.ratings=[{current: 5, max: 10}];
+        $scope.increment = function(numRating){
+            numRating.count += 1;
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
