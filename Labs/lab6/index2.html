@@ -1,0 +1,50 @@
+<html ng-app="" xmlns:style="http://www.w3.org/1999/xhtml">
+<head>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js'></script>
+    <script src="javascripts/store.js"></script>
+    <link rel="stylesheet" href="../node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <script src="../node_modules/jquery-bar-rating/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery-bar-rating/jquery.barrating.js"></script>
+    <!--<script type="text/javascript">
+        $(function () {
+            $('#rating').barrating({
+                theme: 'fontawesome-stars'
+            });
+        });
+    </script>-->
+    <style>
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            font-size: 1.8em;
+        }
+    </style>
+    <script>
+        $('#rating').barrating('show', {
+            ttheme: 'fontawesome-stars'
+            onSelect: function (value, text, event) {
+                if (typeof(event) !== 'undefined') {
+                    // rating was selected by a user
+                    alert.show(event.target);
+                } else {
+                    // rating was selected programmatically
+                    // by calling `set` method
+                }
+            }
+        });</script>
+</head>
+<body>
+<div ng-controller="Products">
+    <ul>
+        <li ng-repeat="item in items" style:list-style-type:none >
+            <img src="images/{{item.name}}.jpg"/>
+            NAME: {{ item.name }} PRICE: {{ item.price }} RATING: {{item.rating}}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

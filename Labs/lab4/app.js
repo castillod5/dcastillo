@@ -48,8 +48,7 @@ router.route('/products')
         });
     })
 
-    //PUT localhost:8080/api/products)
-    //x-www-form-url-encoded
+    //PUT localhost:8080/api/products
     .put(function (req, res) {
         dbProducts.insertProduct(req.body, function (err, data) {
             if (data) {
